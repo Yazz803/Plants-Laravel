@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5" data-aos="zoom-in-up" data-aos-duration="1000">
         <div class="col-lg-6 bg-light m-auto border border-dark rounded p-4">
             <h2 class="text-sm-start"><i class="bi bi-flower2"></i> Create New Plant</h2>
             <hr>
@@ -25,7 +25,7 @@
                 </div>
                 <label class="form-label fw-bold">Type :</label>
                 <select class="form-select mb-3 @error('type') is-invalid @enderror" name="type" aria-label="Default select example">
-                    <option value="" selected>-- Silahkan Pilih Tipe Tanaman --</option>
+                    <option value="" selected hidden>-- Silahkan Pilih Tipe Tanaman --</option>
                     <option value="Obat">Obat</option>
                     <option value="Sayuran">Sayuran</option>
                     <option value="Buah-buahan">Buah-buahan</option>

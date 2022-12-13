@@ -10,7 +10,7 @@ class PlantController extends Controller
 {
     public function index()
     {
-        $plants = Plant::all();
+        $plants = Plant::latest()->filters(request(['search']))->paginate(9);
         return view('index', [
             'plants' => $plants
         ]);
@@ -51,9 +51,11 @@ class PlantController extends Controller
         $validatedData = $request->validate([
             'code_plant' => 'required|max:255',
             'name' => 'required|max:255',
+            'growth' => 'required|max:255',
             'type' => 'required|max:255',
         ],[
             'code_plant.required' => 'Kode Tanaman harus diisi',
+            'growth.required' => 'Perkembangan harus diisi',
             'name.required' => 'Nama Tanaman harus diisi',
             'type.required' => 'Tipe Tanaman harus diisi',
         ]);

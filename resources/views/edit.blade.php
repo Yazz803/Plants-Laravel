@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="container my-5">
+    <div class="container my-5" data-aos="zoom-in-up" data-aos-duration="1000">
         <div class="col-lg-6 bg-light m-auto border border-dark rounded p-4">
             <h2 class="text-sm-start"><i class="bi bi-flower2"></i> Create New Plant</h2>
             <hr>
@@ -40,14 +40,17 @@
                 @enderror
 
                 <label class="form-label fw-bold">Growth :</label>
-                <select name="growth" class="form-select mb-3">
-                    <option value="" @if($plant->growth == NULL) selected @endif>-- Silahkan Pilih Perkembangan Tanamannya --</option>
+                <select name="growth" class="form-select mb-3 @error('growth') is-invalid @enderror">
+                    <option value="" hidden @if($plant->growth == NULL) selected @endif>-- Silahkan Pilih Perkembangan Tanamannya --</option>
                     <option value="Tunas" @if($plant->growth == "Tunas") selected @endif>Tunas</option>
                     <option value="Mulai Tumbuh Cabang dan Daun" @if($plant->growth == "Mulai Tumbuh Cabang dan Daun") selected @endif>Mulai Tumbuh Cabang dan Daun</option>
                     <option value="Pertambahan Tinggi Cabang" @if($plant->growth == "Pertambahan Tinggi Cabang") selected @endif>Pertambahan Tinggi Cabang</option>
                     <option value="Bertambahnya daun" @if($plant->growth == "Bertambahnya daun") selected @endif>Bertambahnya daun</option>
                     <option value="Bertambahnya dan Membesarnya Cabang dan Daun" @if($plant->growth == "Bertambahnya dan Membesarnya Cabang dan Daun") selected @endif>Bertambahnya dan Membesarnya Cabang dan Daun</option>
                 </select>
+                @error('growth')
+                    <p class="fw-bold text-danger">{{ $message }}</p>
+                @enderror
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control @error('notes') is-invalid @enderror" name="notes" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px">{{ $plant->notes }}</textarea>
